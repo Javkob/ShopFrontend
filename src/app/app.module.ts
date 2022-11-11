@@ -11,6 +11,9 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 
+import { LoginComponent } from './modules/login/login.component';
+import { FullpageModule } from './layouts/fullpage/fullpage.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +21,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DefaultModule
+    DefaultModule,
+    FullpageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
