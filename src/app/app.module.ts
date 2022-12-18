@@ -8,11 +8,12 @@ import { FullpageadminModule } from './layouts/fullpageadmin/fullpageadmin.modul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminProductAddComponent } from './modules/admin/admin-product-add/admin-product-add.component';
+import { AdminMessageComponent } from './modules/admin/admin-message/admin-message.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AdminProductUpdateService} from "./admin-product-update.service";
 import {AdminProductUpdate} from "./model/adminProductUpdate";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {AdminMessageService} from "../admin-message.service";
 
 @Component({
   selector: 'app-admin-product-update',
@@ -19,7 +20,8 @@ export class AdminProductUpdateComponent implements OnInit {
   constructor(private router: ActivatedRoute,
               private adminProductUpdateService: AdminProductUpdateService,
               private formBuilder: FormBuilder,
-              private snackBar: MatSnackBar
+              private snackBar: MatSnackBar,
+              private adminMessageService: AdminMessageService
   ) {
   }
 
@@ -27,11 +29,11 @@ export class AdminProductUpdateComponent implements OnInit {
     this.getProduct();
 
     this.productForm = this.formBuilder.group({
-      name: [''],
-      description: [''],
-      category: [''],
-      price: [''],
-      currency: ['PLN'],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      description: ['', [Validators.required, Validators.minLength(4)]],
+      category: ['',[Validators.required, Validators.minLength(4)]],
+      price: ['',[Validators.required, Validators.min(0)]],
+      currency: ['PLN', Validators.required],
     })
   }
 
@@ -43,9 +45,13 @@ export class AdminProductUpdateComponent implements OnInit {
 
   submit() {
     let id = Number(this.router.snapshot.params['id']);
-    this.adminProductUpdateService.savePost(id, this.productForm.value).subscribe(product => {
-      this.mapFromValues(product)});
-    this.snackBar.open("Produkt został zapisany",'',{duration:3000})
+    this.adminProductUpdateService.savePost(id, this.productForm.value).subscribe({
+      next: product => {
+      this.mapFromValues(product);
+    this.snackBar.open("Produkt został zapisany",'',{duration:3000});
+  },
+    error: err => this.adminMessageService.addSpringErrors(err.error)
+  });
   }
 
   private mapFromValues(product: AdminProductUpdate) {
