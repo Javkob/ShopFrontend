@@ -7,8 +7,6 @@ import { FullpageModule } from './layouts/fullpage/fullpage.module';
 import { FullpageadminModule } from './layouts/fullpageadmin/fullpageadmin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { AdminProductAddComponent } from './modules/admin/admin-product-add/admin-product-add.component';
-import { AdminMessageComponent } from './modules/admin/admin-message/admin-message.component';
 
 
 @NgModule({
