@@ -15,7 +15,9 @@ export class AdminProductUpdateComponent implements OnInit {
 
   product!: AdminProductUpdate;
   productForm!: FormGroup;
-
+  imageForm!: FormGroup;
+  requiredFileTypes = "image/jpeg, image/png";
+  image: string | null = null;
 
   constructor(private router: ActivatedRoute,
               private adminProductUpdateService: AdminProductUpdateService,
@@ -31,9 +33,14 @@ export class AdminProductUpdateComponent implements OnInit {
     this.productForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
       description: ['', [Validators.required, Validators.minLength(4)]],
-      category: ['',[Validators.required, Validators.minLength(4)]],
-      price: ['',[Validators.required, Validators.min(0)]],
+      category: ['', [Validators.required, Validators.minLength(4)]],
+      price: ['', [Validators.required, Validators.min(0)]],
       currency: ['PLN', Validators.required],
+      slug: ['', [Validators.required, Validators.minLength(4)]]
+    })
+
+    this.imageForm = this.formBuilder.group({
+      file: ['']
     })
   }
 
@@ -45,13 +52,36 @@ export class AdminProductUpdateComponent implements OnInit {
 
   submit() {
     let id = Number(this.router.snapshot.params['id']);
-    this.adminProductUpdateService.savePost(id, this.productForm.value).subscribe({
+    this.adminProductUpdateService.savePost(id, <AdminProductUpdate>{
+      name: this.productForm.get('name')?.value,
+      description: this.productForm.get('description')?.value,
+      category: this.productForm.get('category')?.value,
+      price: this.productForm.get('price')?.value,
+      currency: this.productForm.get('currency')?.value,
+      slug: this.productForm.get('slug')?.value,
+      image: this.image
+    }).subscribe({
       next: product => {
-      this.mapFromValues(product);
-    this.snackBar.open("Produkt został zapisany",'',{duration:3000});
-  },
-    error: err => this.adminMessageService.addSpringErrors(err.error)
-  });
+        this.mapFromValues(product);
+        this.snackBar.open("Produkt został zapisany", '', {duration: 3000});
+      },
+      error: err => this.adminMessageService.addSpringErrors(err.error)
+    });
+  }
+
+  uploadFile() {
+    let formData = new FormData();
+    formData.append('file', this.imageForm.get('file')?.value);
+    this.adminProductUpdateService.uploadImage(formData)
+      .subscribe(result => this.image = result.filename);
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.imageForm.patchValue({
+        file: event.target.files[0]
+      })
+    }
   }
 
   private mapFromValues(product: AdminProductUpdate) {
@@ -61,6 +91,8 @@ export class AdminProductUpdateComponent implements OnInit {
       category: product.category,
       price: product.price,
       currency: product.currency,
+      slug: product.slug,
     });
+    this.image = product.image;
   }
 }
