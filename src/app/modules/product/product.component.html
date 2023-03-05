@@ -11,6 +11,7 @@
                     <img *ngIf="product.image" mat-card-lg-image src="{{'/api/data/productImage/' + product.image}}" class="productImage">
                   </a>
                 <mat-card-content class="productContent" fxFlex>{{product.description}}</mat-card-content>
+                <mat-card-content class="productContent" fxFlex>{{product.fullDescription}}</mat-card-content>
                 </div>
             </div>
             <div class="productPrice">

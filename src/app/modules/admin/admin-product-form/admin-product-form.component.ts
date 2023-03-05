@@ -42,6 +42,11 @@ import {FormGroup} from "@angular/forms";
       </div>
     </div>
   </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Pełny opis</mat-label>
+        <textarea matInput rows="40" placeholder="Podaj pełny
+opis produktu" formControlName="fullDescription"></textarea>
+      </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Kategoria</mat-label>
     <input matInput placeholder="podaj kategoria" formControlName="category">
@@ -97,6 +102,9 @@ export class AdminProductFormComponent implements OnInit{
   }
   get description(){
     return this.parentForm.get("description");
+  }
+  get fullDescription(){
+    return this.parentForm.get("fullDescription");
   }
   get category(){
     return this.parentForm.get("category");
