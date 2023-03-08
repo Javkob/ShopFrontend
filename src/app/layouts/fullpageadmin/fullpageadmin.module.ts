@@ -16,6 +16,7 @@ import {AdminProductFormComponent} from "../../modules/admin/admin-product-form/
 import {AdminMessageComponent} from "../../modules/admin/admin-message/admin-message.component";
 import {AdminConfirmDialogComponent} from "../../modules/admin/admin-confirm-dialog/admin-confirm-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatSelectModule} from "@angular/material/select";
 
 
 
@@ -30,16 +31,17 @@ import {MatDialogModule} from "@angular/material/dialog";
     AdminMessageComponent,
     AdminConfirmDialogComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FlexLayoutModule,
-    MatListModule,
-    MatIconModule,
-    MatTableModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    MatDialogModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        FlexLayoutModule,
+        MatListModule,
+        MatIconModule,
+        MatTableModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatSelectModule
+    ]
 })
 export class FullpageadminModule { }
