@@ -17,6 +17,16 @@ import {AdminMessageComponent} from "../../modules/admin/admin-message/admin-mes
 import {AdminConfirmDialogComponent} from "../../modules/admin/admin-confirm-dialog/admin-confirm-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
+import {AdminCategoryComponent} from "../../modules/admin/admin-category/admin-category.component";
+import {
+  AdminCategoryAddComponent
+} from "../../modules/admin/admin-category/admin-category-add/admin-category-add.component";
+import {
+  AdminCategoryUpdateComponent
+} from "../../modules/admin/admin-category/admin-category-update/admin-category-update.component";
+import {
+  AdminCategoryFormComponent
+} from "../../modules/admin/admin-category/admin-category-form/admin-category-form.component";
 
 
 
@@ -29,7 +39,11 @@ import {MatSelectModule} from "@angular/material/select";
     AdminProductAddComponent,
     AdminProductFormComponent,
     AdminMessageComponent,
-    AdminConfirmDialogComponent
+    AdminConfirmDialogComponent,
+    AdminCategoryComponent,
+    AdminCategoryAddComponent,
+    AdminCategoryUpdateComponent,
+    AdminCategoryFormComponent
   ],
     imports: [
         CommonModule,
