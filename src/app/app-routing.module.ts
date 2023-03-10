@@ -18,6 +18,7 @@ import {
 import {
   AdminCategoryUpdateComponent
 } from "./modules/admin/admin-category/admin-category-update/admin-category-update.component";
+import {CategoryComponent} from "./modules/category/category.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
       {path: '', component: HomeComponent},
       {path: 'products', component: ProductComponent},
       {path: 'products/:slug', component: ProductDetailsComponent},
+      {path: 'categories/:slug', component: CategoryComponent},
     ]
   },
   {
@@ -46,7 +48,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
