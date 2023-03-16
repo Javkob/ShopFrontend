@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import {AdminCategoryNameDto} from "../common/dto/adminCategoryNameDto";
 import {HttpClient} from "@angular/common/http";
 import {AdminCategory} from "./model/adminCategory";
-import {AdminProductUpdate} from "../admin-product-update/model/adminProductUpdate";
+import {AdminProductUpdate} from "../admin-product/model/adminProductUpdate";
 
 @Injectable({
   providedIn: 'root'
