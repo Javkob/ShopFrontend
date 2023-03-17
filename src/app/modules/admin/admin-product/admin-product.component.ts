@@ -21,7 +21,7 @@ export class AdminProductComponent implements AfterViewInit {
   data: AdminProduct[] = [];
 
   constructor(private adminProductService: AdminProductService,
-              private dialogservice: AdminConfirmDialogService) {
+              private dialogService: AdminConfirmDialogService) {
   }
 
   ngAfterViewInit(): void {
@@ -38,7 +38,7 @@ export class AdminProductComponent implements AfterViewInit {
   }
 
   confirmDelete(element: AdminProduct) {
-    this.dialogservice.openConfirmDialog("Czy na pewno chcesz usunąć ten produkt?")
+    this.dialogService.openConfirmDialog("Czy na pewno chcesz usunąć ten produkt?")
       .afterClosed().subscribe(result =>{
         if(result){
           this.adminProductService.delete(element.id)
